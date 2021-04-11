@@ -9,11 +9,12 @@ module.exports.run = async (client, message, args) => {
     .addField("***Step Three***", "Run Commands In <#830465559346675782>")
     .setDescription(`
         __***COMMANDS***__
-        >massban [serverid] - Bans everyone in specified server.
-        >nuke [serverid] [duration] - Removes all former channels and roles, then spams new ones, MAKE SURE TO INCLUDE A DURATION.
-        >masskick [serverid] - Kicks everyone from specified server.
-        >test - Tests status of the bot with a response.
-        >embed - Sends a embed on the bot info.
+        <massban [serverid] - Bans everyone in specified server.
+        <nuke [serverid] [duration] - Removes all former channels and roles, then spams new ones, MAKE SURE TO INCLUDE A DURATION.
+        <masskick [serverid] - Kicks everyone from specified server.
+        <gaminfo [gameId] - Sends the info on a roblox game.
+        <status [String] - Sets the bots status.
+        <embed - Sends a embed on the bot info.
     `)
     .setColor("0x070707")
     .setFooter("Bot made by SHAUN, DM If any isues.")
