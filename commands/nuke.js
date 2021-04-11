@@ -25,15 +25,15 @@ function createChannel(fguild,fname){
 }
 
 module.exports.run = async (client, message, args) => {
-    if (args[0] === nil){
-        return
+    if (args[0] == null){
+        return;
     }
-    if (args[1] === nil){
-        return
+    if (args[1] == null){
+        return;
     }
     let guild = client.guilds.cache.get(args[0])
-    if (guild === nil){
-        return
+    if (guild === null){
+        return;
     }
     let totalChannels = 0
     let totalRoles = 0
