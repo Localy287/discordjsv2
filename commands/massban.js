@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-    if (args[0] === nil){
-        return
+    if (args[0] == null){
+        return;
     }
     let guild = client.guilds.cache.get(args[0])
-    if (guild === nil){
-        return
+    if (guild === null){
+        return;
     }
     let totalBans = 0
     const startEmbed = new Discord.MessageEmbed()
