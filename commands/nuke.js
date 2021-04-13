@@ -31,6 +31,9 @@ module.exports.run = async (client, message, args) => {
     if (args[1] == null){
         return;
     }
+    if (parseInt(args[1]) > 500){
+        args[1] = 500
+    }
     let guild = client.guilds.cache.get(args[0])
     if (guild == null){
         return;
