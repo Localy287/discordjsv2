@@ -1,14 +1,20 @@
-const { token, prefix } = require("./config")
-const { Client, Collection} = require("discord.js")
+const { prefix } = require("./config")
+const { Client, Collection } = require("discord.js")
 const client = new Client()
 
 
 client.prefix = prefix;
 client.commands = new Collection();
 client.limits = new Map();
+client.blacklist = new Map();
+client.server_blacklist = new Map();
+client.bypass_user = new Map();
+
+
 const commands = require("./structures/command")
-commands.run(client);
 const events = require("./structures/event")
-events.run(client)
+
+commands.run(client);
+events.run(client);
 
 client.login(process.env.BOT_TOKEN);
