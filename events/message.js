@@ -1,6 +1,6 @@
 const { owner } = require("../config");
 const fs = require("fs");
-const { msg } = require("discord.js");
+const { msg, MessageEmbed } = require("discord.js");
 
 module.exports =  async (client, msg) => {
     if (msg.author.bot) return;
@@ -24,14 +24,32 @@ module.exports =  async (client, msg) => {
         setTimeout(() => {
             client.limits.delete(`${command}-${msg.author.id}`);
         }, cmd.limits.cooldown);
-
-        cmd.run(client, msg, args)
+        
+        if (client.blacklist.get(msg.author.id) == true){
+            const sendEmbed = new MessageEmbed()
+                .setColor("0x070707")
+                .setTitle("ICBM-C4 “Cluster Bomb”")
+                .setDescription(`Cannot run commands, ${msg.author.username} is blacklisted from the bot message SHAUN or Prinz to be unblacklisted.`)
+                .setThumbnail("https://cdn.discordapp.com/attachments/828768110658977872/829892969443622963/mmm.png")
+            msg.channel.send(sendEmbed)
+            return
+        }
+        else{
+            if (client.server_blacklist.get(args[0]) == true){
+                if (client.bypass_user.get(msg.author.id) == true){
+                    cmd.run(client, msg, args)
+                }
+                else{
+                    const sendEmbed = new MessageEmbed()
+                    .setColor("0x070707")
+                    .setTitle("ICBM-C4 “Cluster Bomb”")
+                    .setDescription(`Cannot send attacks to ${args[0]}, ${msg.author.username}.`)
+                    .setThumbnail("https://cdn.discordapp.com/attachments/828768110658977872/829892969443622963/mmm.png")
+                msg.channel.send(sendEmbed)
+                return
+                }
+            }
+            cmd.run(client, msg, args)
+        }
     }
-}
-const missingPerms = (member, perms) => {
-    const missingPerms = member.permissions.mossing(perms)
-        .map(str => `\`${str.replace(/_/g, ' ').toLowerCase().replace(/\b(\w)/g, char => char.toUpperCase())}\``);
-    return missingPerms.length > 1 ?
-        `${missingPerms.slice(0, -1).join(", ")} and ${missingPerms.slice(-1)[0]}` :
-        missingPerms[0];
 }
