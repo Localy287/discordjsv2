@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
     .setTitle("ICBM-C4 “Cluster Bomb”")
     .setThumbnail("https://cdn.discordapp.com/attachments/828768110658977872/829892969443622963/mmm.png")
     .setDescription("Hello, user this is a automated dm from ICBM-C4 “Cluster Bomb”")
-    client.users.cache.get(`args[0]`).send(returnEmbed)
+    client.users.cache.get(`${args[0]}`).send(returnEmbed)
 }
 
 module.exports.help = {
